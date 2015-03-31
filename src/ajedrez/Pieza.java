@@ -103,7 +103,7 @@ public abstract class Pieza implements Constantes {
             case REY:
                 return new Rey(new Posicion(col, fil), color);
 		
-    /******** COMENTADO PARA PERMITIR COMPILACION PARCIAL ******** 
+
 	    case REINA:
                 return new Reina(new Posicion(col, fil), color);
             case TORRE: 
@@ -111,9 +111,7 @@ public abstract class Pieza implements Constantes {
             case ALFIL: 
                 return new Alfil(new Posicion(col, fil), color);
             case CABALLO:
-                return new Caballo(new Posicion(col, fil), color);
-     *************************************************************/		
-
+                return new Caballo(new Posicion(col, fil), color);	
             case PEON:  
                 return new Peon(new Posicion(col, fil), color);
             case VACIO: 

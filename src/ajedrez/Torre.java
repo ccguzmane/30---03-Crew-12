@@ -35,26 +35,44 @@ return TORRE;
   */
 public ArrayList posiblesMovimientos(Tablero t) { 
 ArrayList a1 = new ArrayList();
-int i=1;
-while(t.dentro(p.col,p.fil+i) && (t.vacia(p.col, p.fil+i)) || t.get(p.col,p.fil+i).getColor()!= color){
-a1.add(new Movimiento(p, 0, i));
-i++;
+int i;
+
+for (i=1;i<=8;i++){
+    if (t.dentro(p.col,p.fil+i)){
+        if (t.vacia(p.col,p.fil+i) || t.get(p.col,p.fil+i).getColor() != this.color){
+            a1.add(new Movimiento(p,0,i));
+        }
+        else break;
+    }
 }
-i = 1;
-while(t.dentro(p.col,p.fil-i) && (t.vacia(p.col, p.fil-i)) || t.get(p.col,p.fil-i).getColor()!= color){
-a1.add(new Movimiento(p, 0, -i));
-i++;
+
+for (i=1;i<=8;i++){
+    if (t.dentro(p.col,p.fil-i)){
+        if (t.vacia(p.col,p.fil-i) || t.get(p.col,p.fil-i).getColor() != this.color){
+            a1.add(new Movimiento(p,0,-i));
+        }
+        else break;
+    }
 }
-i = 1;
-while(t.dentro(p.col+i,p.fil) && (t.vacia(p.col+i, p.fil)) || t.get(p.col+i,p.fil).getColor()!= color){
-a1.add(new Movimiento(p, i, 0));
-i++;
+
+for (i=1;i<=8;i++){
+    if (t.dentro(p.col+i,p.fil)){
+        if (t.vacia(p.col+i,p.fil) || t.get(p.col+i,p.fil).getColor() != this.color){
+            a1.add(new Movimiento(p,i,0));
+        }
+        else break;
+    }
 }
-i = 1;
-while(t.dentro(p.col-i,p.fil) && (t.vacia(p.col-i, p.fil)) || t.get(p.col-i,p.fil).getColor()!= color){
-a1.add(new Movimiento(p, -i, 0));
-i++;
+
+for (i=1;i<=8;i++){
+    if (t.dentro(p.col-i,p.fil)){
+        if (t.vacia(p.col-i,p.fil) || t.get(p.col-i,p.fil).getColor() != this.color){
+            a1.add(new Movimiento(p,-i,0));
+        }
+        else break;
+    }
 }
+
     return a1;
 }
 
@@ -67,6 +85,7 @@ i++;
   */
   
 public boolean puedeComer(Tablero t, Posicion d) {
-return true;
+ArrayList arr = posiblesMovimientos(t);
+return arr.indexOf(new Movimiento(this.getPosicion(), d.fil, d.col))!= -1;
 }
 }

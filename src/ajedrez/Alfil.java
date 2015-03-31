@@ -35,26 +35,44 @@ return ALFIL;
   */
 public ArrayList posiblesMovimientos(Tablero t) { 
 ArrayList a1 = new ArrayList();
-int i=1;
-while(t.dentro(p.col+i,p.fil+i) && (t.vacia(p.col+i, p.fil+i)) || t.get(p.col+i,p.fil+i).getColor()!= color){
-a1.add(new Movimiento(p, i, i));
-i++;
+int i;
+
+for (i=1;i<=8;i++){
+    if (t.dentro(p.col+i,p.fil+i)){
+        if (t.vacia(p.col+i,p.fil+i) || t.get(p.col+i,p.fil+i).getColor() != this.color){
+            a1.add(new Movimiento(p,i,i));
+        }
+        else break;
+    }
 }
-i = 1;
-while(t.dentro(p.col+i,p.fil-i) && (t.vacia(p.col+i, p.fil-i)) || t.get(p.col+i,p.fil-i).getColor()!= color){
-a1.add(new Movimiento(p, i, -i));
-i++;
+
+for (i=1;i<=8;i++){
+    if (t.dentro(p.col+i,p.fil-i)){
+        if (t.vacia(p.col+i,p.fil-i) || t.get(p.col+i,p.fil-i).getColor() != this.color){
+            a1.add(new Movimiento(p,i,-i));
+        }
+        else break;
+    }
 }
-i = 1;
-while(t.dentro(p.col-i,p.fil+i) && (t.vacia(p.col-i, p.fil+i)) || t.get(p.col-i,p.fil+i).getColor()!= color){
-a1.add(new Movimiento(p, -i, i));
-i++;
+
+for (i=1;i<=8;i++){
+    if (t.dentro(p.col-i,p.fil+i)){
+        if (t.vacia(p.col-i,p.fil+i) || t.get(p.col-i,p.fil+i).getColor() != this.color){
+            a1.add(new Movimiento(p,-i,i));
+        }
+        else break;
+    }
 }
-i = 1;
-while(t.dentro(p.col-i,p.fil-i) && (t.vacia(p.col-i, p.fil-i)) || t.get(p.col-i,p.fil-i).getColor()!= color){
-a1.add(new Movimiento(p, -i, -i));
-i++;
+
+for (i=1;i<=8;i++){
+    if (t.dentro(p.col-i,p.fil-i)){
+        if (t.vacia(p.col-i,p.fil-i) || t.get(p.col-i,p.fil-i).getColor() != this.color){
+            a1.add(new Movimiento(p,-i,-i));
+        }
+        else break;
+    }
 }
+
     return a1;
 }
 
@@ -67,6 +85,8 @@ i++;
   */
   
 public boolean puedeComer(Tablero t, Posicion d) {
-return true;
+ArrayList arr = posiblesMovimientos(t);
+return arr.indexOf(new Movimiento(this.getPosicion(), d.fil, d.col))!= -1;
 }
+
 }
